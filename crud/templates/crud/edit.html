@@ -1,0 +1,25 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+    <form method="POST" action="update/{{ members.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="userid">UserId</label>
+            <input type="text" name="userid" value="{{ members.userid }}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="username">User-Name</label>
+            <input type="text" name="username" value="{{ members.username }}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{ members.email }}" style="length:100 " required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" value="{{ members.password }}" required="required"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span> Update</button>
+        </div>
+    </form>
+{% endblock %}

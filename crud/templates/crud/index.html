@@ -1,0 +1,53 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+
+<form class="form-inline"  action="create" method="POST">
+    {% csrf_token %}
+    <table>
+    <tr>
+            <td> <label for="userid">User-Identification:</label>
+            <input type="text" name="userid" value="{{ members.userid }}"style="width:80%" required="required"/>
+            </td>
+           <td> <label for="username">User-Name:</label>
+            <input type="text" name="username" value="{{ members.username }}" style="width:80%" required="required"/>
+            </td>
+
+    </tr>
+    <tr>
+            <td><label for="email">Email Address:</label><br>
+            <input type="email" name="email" value="{{ members.email }}" style="width:100% " required="required"/>
+            </td>
+            <td><label for="password">Password:</label>
+            <input type="password" name="password" value="{{ members.password }}" style="width:80%"required="required"/>
+            </td>
+    </tr>
+    <th style="center"class="text-center">
+         <td><button type="submit" style="center"class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span> Create</button>
+        </td></th>
+    </table>
+</form>
+<br />
+<table class="table table-bordered">
+    <thead class="alert-warning">
+        <tr>
+            <th>UserId</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.userid }}</td>
+            <td>{{ member.username }}</td>
+            <td>{{member.email}}</td>
+            <td>{{ member.password }}</td>
+            <td><center><a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+{% endblock %}
